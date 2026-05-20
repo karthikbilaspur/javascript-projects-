@@ -1,25 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lorem Ipsum</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorem Ipsum Generator Pro</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Lorem Ipsum Generator Pro</h1>
+      <p>Generate placeholder text for your designs and code</p>
+    </header>
 
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <section class="section-center">
-      <h3>tired of boring lorem ipsum?</h3>
-      <form class="lorem-form">
-        <label for="amount">paragraphs:</label>
-        <input type="number" name="amount" id="amount" placeholder="5" />
-        <button type="submit" class="btn">generate</button>
-      </form>
-      <article class="lorem-text"></article>
-    </section>
+    <div class="controls">
+      <div class="control-group">
+        <label for="style-select">Style</label>
+        <select id="style-select">
+          <option value="lorem">Classic Lorem Ipsum</option>
+          <option value="bacon">Bacon Ipsum</option>
+          <option value="cupcake">Cupcake Ipsum</option>
+          <option value="pirate">Pirate Ipsum</option>
+          <option value="hipster">Hipster Ipsum</option>
+        </select>
+      </div>
 
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+      <div class="control-group">
+        <label for="type-select">Type</label>
+        <select id="type-select">
+          <option value="paragraphs">Paragraphs</option>
+          <option value="sentences">Sentences</option>
+          <option value="words">Words</option>
+          <option value="chars">Characters</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="count-input">Count</label>
+        <input type="number" id="count-input" value="3" min="1" max="50">
+      </div>
+
+      <div class="control-group checkbox-group">
+        <input type="checkbox" id="html-checkbox">
+        <label for="html-checkbox">Wrap in &lt;p&gt; tags</label>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button id="generate-btn" class="btn primary">Generate</button>
+      <button id="copy-btn" class="btn">Copy to Clipboard</button>
+      <button id="txt-btn" class="btn">Export.txt</button>
+      <button id="json-btn" class="btn">Export.json</button>
+    </div>
+
+    <div class="api-hint">
+      <strong>API mode:</strong> Try <code>?type=paragraphs&count=5&style=pirate&html=true</code>
+    </div>
+
+    <div class="output-section">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="raw">Raw Text</button>
+        <button class="tab-btn" data-tab="preview">HTML Preview</button>
+      </div>
+
+      <div id="raw" class="tab-pane active">
+        <textarea id="output" readonly placeholder="Your generated text will appear here..."></textarea>
+        <div class="stats" id="stats">0 words • 0 characters</div>
+      </div>
+
+      <div id="preview" class="tab-pane">
+        <div id="preview-content" class="preview-box">Generate some HTML to see preview</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

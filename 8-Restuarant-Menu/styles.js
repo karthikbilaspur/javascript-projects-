@@ -1,53 +1,89 @@
 const buttons = document.querySelectorAll('.button');
 const menus = document.querySelectorAll('.menu');
 
+// Create sliding highlight element
 const highlight = document.createElement('span');
-document.body.appendChild(highlight);
 highlight.classList.add('highlight');
+document.querySelector('.buttons-container').appendChild(highlight);
 
-// Set initial dimensions and position of 'highlight' based on activeButton coords 
-function initialHightlightLocation() {
-  const activeButton = document.querySelector('.button--is-active');
-  const activeButtonCoords = activeButton.getBoundingClientRect();
+// Set initial position of highlight
+function moveHighlight(target) {
+  const buttonRect = target.getBoundingClientRect();
+  const containerRect = target.parentElement.getBoundingClientRect();
 
-  const initialCoords = {
-    width: activeButtonCoords.width,
-    height: activeButtonCoords.height,
-    left: activeButtonCoords.left + window.scrollX,
-    top: activeButtonCoords.top + window.scrollY
-  }
+  highlight.style.width = `${buttonRect.width}px`;
+  highlight.style.height = `${buttonRect.height}px`;
+  highlight.style.transform = `translate(${buttonRect.left - containerRect.left}px, ${buttonRect.top - containerRect.top}px)`;
+}
 
-  highlight.style.width = `${initialCoords.width}px`;
-  highlight.style.height = `${initialCoords.height}px`;
-  highlight.style.transform = `translate(${initialCoords.left}px, ${initialCoords.top}px)`;
+function setActiveTab(targetButton) {
+  // Update button states + ARIA
+  buttons.forEach(button => {
+    const isActive = button === targetButton;
+    button.classList.toggle('button--is-active', isActive);
+    button.setAttribute('aria-selected', isActive);
+  });
+
+  // Move highlight
+  moveHighlight(targetButton);
+
+  // Show target menu, hide others
+  const targetId = targetButton.dataset.target;
+  menus.forEach(menu => {
+    const isTarget = menu.id === targetId;
+    menu.classList.toggle('menu--is-visible', isTarget);
+    menu.hidden =!isTarget;
+  });
 }
 
 function handleClick(e) {
   e.preventDefault();
-
-  buttons.forEach(button => button.classList.remove('button--is-active'));
-  this.classList.add('button--is-active');
-
-  // Set current dimensions and position of 'highlight' based on the clicked button 
-  const buttonCoords = this.getBoundingClientRect();
-  const coords = {
-    width: buttonCoords.width,
-    height: buttonCoords.height,
-    left: buttonCoords.left + window.scrollX,
-    top: buttonCoords.top + window.scrollY
-  }
-  highlight.style.width = `${coords.width}px`;
-  highlight.style.height = `${coords.height}px`;
-  highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
-
-  // Show the menu associated to the clicked button
-  const targetMenu = document.querySelector(`#${this.dataset.target}`);
-  menus.forEach(menu => {
-    menu.classList.remove('menu--is-visible');
-    targetMenu.classList.add('menu--is-visible');
-  })
+  setActiveTab(this);
 }
 
-window.addEventListener('load', initialHightlightLocation);
-window.addEventListener('resize', initialHightlightLocation);
-buttons.forEach(button => button.addEventListener('click', handleClick));
+// Keyboard navigation for tabs
+function handleKeydown(e) {
+  const currentIndex = Array.from(buttons).indexOf(document.activeElement);
+  let newIndex;
+
+  switch(e.key) {
+    case 'ArrowRight':
+      e.preventDefault();
+      newIndex = currentIndex + 1 < buttons.length? currentIndex + 1 : 0;
+      buttons[newIndex].focus();
+      setActiveTab(buttons[newIndex]);
+      break;
+    case 'ArrowLeft':
+      e.preventDefault();
+      newIndex = currentIndex - 1 >= 0? currentIndex - 1 : buttons.length - 1;
+      buttons[newIndex].focus();
+      setActiveTab(buttons[newIndex]);
+      break;
+    case 'Home':
+      e.preventDefault();
+      buttons[0].focus();
+      setActiveTab(buttons[0]);
+      break;
+    case 'End':
+      e.preventDefault();
+      buttons[buttons.length - 1].focus();
+      setActiveTab(buttons[buttons.length - 1]);
+      break;
+  }
+}
+
+// Init
+window.addEventListener('load', () => {
+  const activeButton = document.querySelector('.button--is-active');
+  if (activeButton) moveHighlight(activeButton);
+});
+
+window.addEventListener('resize', () => {
+  const activeButton = document.querySelector('.button--is-active');
+  if (activeButton) moveHighlight(activeButton);
+});
+
+buttons.forEach(button => {
+  button.addEventListener('click', handleClick);
+  button.addEventListener('keydown', handleKeydown);
+});

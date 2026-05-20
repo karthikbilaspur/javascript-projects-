@@ -1,128 +1,142 @@
-<div class="wrapper">
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Menu - Tabbed with Sliding Highlight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrapper">
     <h2>Our Menu</h2>
-  
-    <div class="buttons-container">
-      <a href="#" class="button button--is-active" data-target="pizzaMenu">Pizzas</a>
-      <a href="#" class="button" data-target="coffeeMenu">Coffee</a>
-      <a href="#" class="button" data-target="noodlesMenu">Noodles</a>
+
+    <div class="buttons-container" role="tablist" aria-label="Menu Categories">
+      <a href="#pizzaMenu" class="button button--is-active" role="tab" aria-selected="true" aria-controls="pizzaMenu" data-target="pizzaMenu">Pizzas</a>
+      <a href="#coffeeMenu" class="button" role="tab" aria-selected="false" aria-controls="coffeeMenu" data-target="coffeeMenu">Coffee</a>
+      <a href="#noodlesMenu" class="button" role="tab" aria-selected="false" aria-controls="noodlesMenu" data-target="noodlesMenu">Noodles</a>
     </div>
-  
+
     <!-- Start Pizza Menu -->
-    <div class="menu menu--is-visible" id="pizzaMenu">
+    <div class="menu menu--is-visible" id="pizzaMenu" role="tabpanel" aria-labelledby="pizzaMenuTab">
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Greek Pizza</h3>
           <span class="item__dots"></span>
           <span class="item__price">$22</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Feta, olives, tomatoes, and oregano on a crispy crust.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Cheese Pizza</h3>
           <span class="item__dots"></span>
           <span class="item__price">$20</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Classic mozzarella blend with house tomato sauce.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Neapolitan Pizza</h3>
           <span class="item__dots"></span>
           <span class="item__price">$18</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">San Marzano tomatoes, fresh basil, buffalo mozzarella.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Pepperoni Pizza</h3>
           <span class="item__dots"></span>
           <span class="item__price">$15</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Loaded with spicy pepperoni and extra cheese.</p>
       </div>
     </div> <!-- End Pizza Menu -->
-  
+
     <!-- Start Coffee Menu -->
-    <div class="menu" id="coffeeMenu">
+    <div class="menu" id="coffeeMenu" role="tabpanel" aria-labelledby="coffeeMenuTab" hidden>
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Cappuccino</h3>
           <span class="item__dots"></span>
           <span class="item__price">$4</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Equal parts espresso, steamed milk, and foam.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Iced Coffee</h3>
           <span class="item__dots"></span>
           <span class="item__price">$5</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Cold brew over ice with your choice of milk.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Café Latte</h3>
           <span class="item__dots"></span>
           <span class="item__price">$3</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Espresso with silky steamed milk and light foam.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Espresso</h3>
           <span class="item__dots"></span>
           <span class="item__price">$4</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Double shot, rich crema, served solo.</p>
       </div>
     </div> <!-- End Coffee Menu -->
-  
+
     <!-- Start Noodles Menu -->
-    <div class="menu" id="noodlesMenu">
+    <div class="menu" id="noodlesMenu" role="tabpanel" aria-labelledby="noodlesMenuTab" hidden>
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Chicken Noodles</h3>
           <span class="item__dots"></span>
           <span class="item__price">$16</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Wok-tossed with veggies in savory soy glaze.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Egg Noodles</h3>
           <span class="item__dots"></span>
           <span class="item__price">$12</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Springy noodles with scallions and sesame oil.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Veg Noodles</h3>
           <span class="item__dots"></span>
           <span class="item__price">$10</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">Loaded with seasonal vegetables and light garlic sauce.</p>
       </div>
-  
+
       <div class="item">
         <div class="item__header">
           <h3 class="item__title">Chuck Norris Noodles</h3>
           <span class="item__dots"></span>
           <span class="item__price">$20</span>
         </div>
-        <p class="item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos harum officia eaque nobis ut.</p>
+        <p class="item__description">So spicy they'll roundhouse kick your taste buds.</p>
       </div>
     </div> <!-- End Noodles Menu -->
-  
+
   </div> <!-- End Wrapper -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,90 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scroll</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header id="home">
-      <!-- navbar -->
-      <nav id="nav">
-        <div class="nav-center">
-          <!-- nav header -->
-          <div class="nav-header">
-            <img src="./logo.svg" class="logo" alt="logo" />
-            <button class="nav-toggle">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-          <!-- links -->
-          <div class="links-container">
-            <ul class="links">
-              <li>
-                <a href="#home" class="scroll-link">home</a>
-              </li>
-              <li>
-                <a href="#about" class="scroll-link">about</a>
-              </li>
-              <li>
-                <a href="#services" class="scroll-link">services</a>
-              </li>
-              <li>
-                <a href="#tours" class="scroll-link">tours</a>
-              </li>
-            </ul>
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Features - HTML/CSS/JS</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Sticky Nav with Scroll Spy -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <div class="logo">ScrollDemo</div>
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+        <li><a href="#code" class="nav-link" data-section="code">Code</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Sections -->
+  <section id="hero" class="section hero">
+    <div class="section-content">
+      <h1 class="reveal">Smooth Scroll Experience</h1>
+      <p class="reveal" data-delay="200">Scroll down to see animations, progress tracking, and spy navigation in action.</p>
+      <button class="cta-btn reveal" data-delay="400" id="scrollToFeatures">Explore Features</button>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="section-content">
+      <h2 class="reveal">About Scroll APIs</h2>
+      <p class="reveal">Modern browsers give us <code>IntersectionObserver</code>, <code>scroll-behavior: smooth</code>, and <code>window.scrollY</code> for powerful scroll-driven UIs without janky <code>scroll</code> listeners.</p>
+      <div class="stats">
+        <div class="stat-card reveal" data-delay="100">
+          <h3>0ms</h3>
+          <p>Main thread blocking with IntersectionObserver</p>
         </div>
-      </nav>
-      <!-- banner -->
-      <div class="banner">
-        <div class="container">
-          <h1>scroll project</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas eos
-            neque sunt in? Id, necessitatibus quos quisquam distinctio
-            laudantium fugiat?
-          </p>
-          <a href="#tours" class="scroll-link btn btn-white">explore tours</a>
+        <div class="stat-card reveal" data-delay="200">
+          <h3>60fps</h3>
+          <p>Smooth animations using CSS + transform</p>
+        </div>
+        <div class="stat-card reveal" data-delay="300">
+          <h3>100%</h3>
+          <p>Vanilla JS, zero dependencies</p>
         </div>
       </div>
-    </header>
-    <!-- about -->
-    <section id="about" class="section">
-      <div class="title">
-        <h2>about <span>us</span></h2>
+    </div>
+  </section>
+
+  <section id="features" class="section section-dark">
+    <div class="section-content">
+      <h2 class="reveal">Features Included</h2>
+      <div class="feature-grid">
+        <div class="feature-card reveal" data-delay="0">
+          <i class="fa-solid fa-arrows-up-down"></i>
+          <h3>Scroll Progress</h3>
+          <p>Top bar shows how far you've scrolled through the page.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="100">
+          <i class="fa-solid fa-eye"></i>
+          <h3>Scroll Spy</h3>
+          <p>Nav highlights the section currently in viewport.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="200">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <h3>Reveal Animations</h3>
+          <p>Elements fade + slide in when they enter viewport.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="300">
+          <i class="fa-solid fa-arrow-up"></i>
+          <h3>Back to Top</h3>
+          <p>Button appears after scrolling, smooth scrolls to top.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="400">
+          <i class="fa-solid fa-anchor"></i>
+          <h3>Smooth Anchors</h3>
+          <p>Clicking nav links smoothly scrolls to sections.</p>
+        </div>
+        <div class="feature-card reveal" data-delay="500">
+          <i class="fa-solid fa-compress"></i>
+          <h3>Shrinking Nav</h3>
+          <p>Navbar shrinks and adds shadow on scroll.</p>
+        </div>
       </div>
-    </section>
-    <!-- services -->
-    <section id="services" class="section">
-      <div class="title">
-        <h2>our <span>services</span></h2>
+    </div>
+  </section>
+
+  <section id="code" class="section">
+    <div class="section-content">
+      <h2 class="reveal">How It Works</h2>
+      <div class="code-block reveal">
+        <pre><code>// IntersectionObserver for reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});</code></pre>
       </div>
-    </section>
-    <!-- contact -->
-    <section id="tours" class="section">
-      <div class="title">
-        <h2>featured <span>tours</span></h2>
-      </div>
-    </section>
-    <!-- footer -->
-    <footer class="section">
-      <p>
-        copyright &copy; 
-        <span id="date"></span>. all rights reserved
-      </p>
-    </footer>
-    <a class="scroll-link top-link" href="#home">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+      <p class="reveal">Uses <code>IntersectionObserver</code> instead of scroll events for performance. No layout thrashing.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-dark">
+    <div class="section-content">
+      <h2 class="reveal">Get In Touch</h2>
+      <p class="reveal">Scroll all the way up using the button in the bottom-right.</p>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
 </html>

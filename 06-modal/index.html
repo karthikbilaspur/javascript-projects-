@@ -1,35 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modal</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- hero -->
-    <header class="hero">
-      <div class="banner">
-        <h1>modal project</h1>
-        <button class="btn modal-btn">
-          open modal
-        </button>
-      </div>
-    </header>
-    <!-- modal -->
-    <div class="modal-overlay">
-      <div class="modal-container">
-        <h3>modal content</h3>
-        <button class="close-btn"><i class="fas fa-times"></i></button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Modal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <main class="hero">
+    <div class="banner">
+      <h1>Modal Gallery</h1>
+      <p>Click a button to open different modals</p>
+      <div class="btn-container">
+        <button class="btn modal-btn" data-modal="modal-1">About Us</button>
+        <button class="btn modal-btn" data-modal="modal-2">Services</button>
+        <button class="btn modal-btn" data-modal="modal-3">Contact</button>
       </div>
     </div>
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+  </main>
+
+  <!-- 1. Multiple Modals -->
+  <!-- Modal 1 -->
+  <div class="modal-overlay" id="modal-1">
+    <div class="modal-container" draggable="true">
+      <h3>About Us</h3>
+      <p>We are a team of passionate developers building beginner-friendly projects. This modal is draggable - try moving it!</p>
+      <div class="modal-footer">
+        <label class="checkbox-label">
+          <input type="checkbox" class="dont-show" data-modal="modal-1"> Don't show again
+        </label>
+      </div>
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal-overlay" id="modal-2">
+    <div class="modal-container" draggable="true">
+      <h3>Our Services</h3>
+      <p>We offer web development, UI/UX design, and JavaScript tutoring. All our modals can be dragged around the screen.</p>
+      <div class="modal-footer">
+        <label class="checkbox-label">
+          <input type="checkbox" class="dont-show" data-modal="modal-2"> Don't show again
+        </label>
+      </div>
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal-overlay" id="modal-3">
+    <div class="modal-container" draggable="true">
+      <h3>Contact Us</h3>
+      <p>Email: hello@example.com <br> Phone: 123-456-7890 <br> Try dragging this modal too!</p>
+      <div class="modal-footer">
+        <label class="checkbox-label">
+          <input type="checkbox" class="dont-show" data-modal="modal-3"> Don't show again
+        </label>
+      </div>
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

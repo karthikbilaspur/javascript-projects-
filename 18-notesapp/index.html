@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>📝 Notes</h1>
+          <button id="new-note" class="btn primary">+ New Note</button>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" id="search" placeholder="Search notes..." />
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="pinned">Pinned</button>
+        </div>
+
+        <div id="notes-list" class="notes-list"></div>
+      </aside>
+
+      <!-- Main Editor -->
+      <main class="editor">
+        <div id="empty-state" class="empty-state">
+          <h2>No note selected</h2>
+          <p>Create a new note or select one from the sidebar</p>
+        </div>
+
+        <div id="editor-container" class="editor-container hidden">
+          <div class="editor-header">
+            <input type="text" id="note-title" placeholder="Note title..." />
+            <div class="editor-actions">
+              <button id="pin-note" class="icon-btn" title="Pin note">📌</button>
+              <button id="delete-note" class="icon-btn danger" title="Delete note">🗑️</button>
+            </div>
+          </div>
+
+          <div class="editor-toolbar">
+            <input type="text" id="note-tags" placeholder="Add tags: work, ideas..." />
+            <div class="view-toggle">
+              <button class="toggle-btn active" data-view="edit">Edit</button>
+              <button class="toggle-btn" data-view="preview">Preview</button>
+              <button class="toggle-btn" data-view="split">Split</button>
+            </div>
+          </div>
+
+          <div class="editor-content">
+            <textarea id="note-content" placeholder="Start writing... Supports **markdown**"></textarea>
+            <div id="note-preview" class="preview hidden"></div>
+          </div>
+
+          <div class="editor-footer">
+            <span id="word-count">0 words</span>
+            <span id="last-saved">Not saved</span>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

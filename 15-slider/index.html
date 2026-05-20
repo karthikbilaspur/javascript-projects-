@@ -1,43 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slider</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Dev Essentials Slider Pro</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <!-- html2canvas for PNG export -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="slider-container">
+    <header>
+      <h1>Web Dev Essentials</h1>
+      <p>Core concepts of modern web development</p>
+      <div class="header-actions">
+        <button id="export-btn" class="icon-btn" title="Export slide as PNG">📸</button>
+      </div>
+    </header>
 
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="slider-container">
-      <div class="slide">
-        <img src="./img-1.jpeg" class="slide-img" alt="" />
-        <h1>1</h1>
-      </div>
-      <div class="slide">
-        <h1>2</h1>
-      </div>
-      <div class="slide">
-        <h1>3</h1>
-      </div>
-      <div class="slide">
-        <div>
-          <img src="./person-1.jpeg" class="person-img" alt="" />
-          <h4>susan doe</h4>
-          <h1>4</h1>
-        </div>
-      </div>
-    </div>
-    <div class="btn-container">
-      <button type="button" class="prevBtn">
-        prev
-      </button>
-      <button type="button" class="nextBtn">
-        next
-      </button>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
     </div>
 
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+    <div class="slider">
+      <!-- Slide 1: HTML -->
+      <div class="slide active" data-topic="html">
+        <div class="slide-number">1 / 6</div>
+        <h2>HTML: The Structure</h2>
+        <p class="slide-text">
+          HTML defines the structure and meaning of web content. HTML5 introduced semantic tags like
+          <code>&lt;article&gt;</code> and native <code>&lt;video&gt;</code> elements.
+        </p>
+        <pre><code class="language-html">&lt;article&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;Semantic HTML&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+        <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+
+      <!-- Slide 2: CSS -->
+      <div class="slide" data-topic="css">
+        <div class="slide-number">2 / 6</div>
+        <h2>CSS: The Style</h2>
+        <p class="slide-text">
+          CSS controls presentation. Flexbox and Grid revolutionized layouts. CSS variables and
+          media queries enable responsive design without frameworks.
+        </p>
+        <pre><code class="language-css">.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  --main-color: #4f46e5;
+}</code></pre>
+        <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+
+      <!-- Slide 3: JavaScript -->
+      <div class="slide" data-topic="js">
+        <div class="slide-number">3 / 6</div>
+        <h2>JavaScript: The Behavior</h2>
+        <p class="slide-text">
+          JS makes pages interactive. ES6+ brought arrow functions, promises, and modules.
+          It runs in browsers and on servers via Node.js.
+        </p>
+        <pre><code class="language-javascript">const fetchData = async () => {
+  const res = await fetch('/api/data');
+  const data = await res.json();
+  return data;
+};</code></pre>
+        <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+
+      <!-- Slide 4: HTTP -->
+      <div class="slide" data-topic="http">
+        <div class="slide-number">4 / 6</div>
+        <h2>HTTP: The Protocol</h2>
+        <p class="slide-text">
+          HTTP is the foundation of data communication on the web. Methods like GET, POST, PUT, DELETE
+          define CRUD operations. HTTP/2 and HTTP/3 improved speed with multiplexing and QUIC.
+        </p>
+        <pre><code class="language-http">GET /api/users HTTP/1.1
+Host: example.com
+Accept: application/json</code></pre>
+        <a href="https://en.wikipedia.org/wiki/HTTP" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+
+      <!-- Slide 5: Git -->
+      <div class="slide" data-topic="git">
+        <div class="slide-number">5 / 6</div>
+        <h2>Git: Version Control</h2>
+        <p class="slide-text">
+          Git tracks changes in source code. Branching, merging, and pull requests enable team
+          collaboration. Distributed architecture means every clone is a full backup.
+        </p>
+        <pre><code class="language-bash">git checkout -b feature/login
+git add.
+git commit -m "Add login form"
+git push origin feature/login</code></pre>
+        <a href="https://en.wikipedia.org/wiki/Git" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+
+      <!-- Slide 6: React -->
+      <div class="slide" data-topic="react">
+        <div class="slide-number">6 / 6</div>
+        <h2>React: UI Library</h2>
+        <p class="slide-text">
+          React uses components and a virtual DOM for efficient UI updates. Hooks like useState
+          and useEffect replaced class components. Unidirectional data flow makes apps predictable.
+        </p>
+        <pre><code class="language-jsx">function Counter() {
+  const [count, setCount] = useState(0);
+  return &lt;button onClick={() => setCount(count + 1)}&gt;
+    {count}
+  &lt;/button&gt;;
+}</code></pre>
+        <a href="https://en.wikipedia.org/wiki/React_(JavaScript_library)" target="_blank" class="wiki-link">
+          Learn more on Wikipedia →
+        </a>
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button class="prev-btn" aria-label="Previous slide">‹</button>
+      <div class="dots"></div>
+      <button class="next-btn" aria-label="Next slide">›</button>
+    </div>
+
+    <div class="autoplay">
+      <input type="checkbox" id="autoplay-toggle">
+      <label for="autoplay-toggle">Auto-play</label>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-http.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

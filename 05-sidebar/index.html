@@ -1,72 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sidebar</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.14.0/css/all.min.css"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- hamburger button -->
+  <button class="sidebar-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
 
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <button class="sidebar-toggle">
-      <i class="fas fa-bars"></i>
-    </button>
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="logo.svg" class="logo" alt="" />
-        <button class="close-btn"><i class="fas fa-times"></i></button>
+  <!-- sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3 class="logo">Dev<span>Hub</span></h3>
+      <button class="close-btn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <!-- links -->
+    <ul class="links">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      
+      <!-- dropdown -->
+      <li class="dropdown">
+        <a href="#" class="nav-link dropdown-toggle">
+          Projects <i class="fas fa-chevron-down"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#color-flipper" class="nav-link">Color Flipper</a></li>
+          <li><a href="#counter" class="nav-link">Counter</a></li>
+          <li><a href="#navbar" class="nav-link">Navbar</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <!-- social icons -->
+    <ul class="social-icons">
+      <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="#"><i class="fab fa-github"></i></a></li>
+    </ul>
+  </aside>
+
+  <!-- overlay -->
+  <div class="sidebar-overlay"></div>
+
+  <!-- main content -->
+  <main>
+    <section id="home" class="section">
+      <div class="section-center">
+        <h1>Home</h1>
+        <p>Click the hamburger to open the sidebar.</p>
       </div>
-      <!-- links -->
-      <ul class="links">
-        <li>
-          <a href="index.html">home</a>
-        </li>
-        <li>
-          <a href="about.html">about</a>
-        </li>
-        <li>
-          <a href="projects.html">projects</a>
-        </li>
-        <li>
-          <a href="contact.html">contact</a>
-        </li>
-      </ul>
-      <!-- social media -->
-      <ul class="social-icons">
-        <li>
-          <a href="https://www.twitter.com">
-            <i class="fab fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.twitter.com">
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com">
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.facebook.com">
-            <i class="fab fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.discord.com">
-            <i class="fab fa-discord"></i>
-          </a>
-        </li>
-      </ul>
-    </aside>
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+    </section>
+    
+    <section id="about" class="section">
+      <div class="section-center">
+        <h1>About</h1>
+        <p>Sidebar stays fixed and overlays content.</p>
+      </div>
+    </section>
+    
+    <section id="projects" class="section">
+      <div class="section-center">
+        <h1>Projects</h1>
+        <p>Check the dropdown in the sidebar.</p>
+      </div>
+    </section>
+    
+    <section id="color-flipper" class="section">
+      <div class="section-center">
+        <h1>Color Flipper</h1>
+        <p>Sub-project 1</p>
+      </div>
+    </section>
+    
+    <section id="counter" class="section">
+      <div class="section-center">
+        <h1>Counter</h1>
+        <p>Sub-project 2</p>
+      </div>
+    </section>
+    
+    <section id="contact" class="section">
+      <div class="section-center">
+        <h1>Contact</h1>
+        <p>Get in touch.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>

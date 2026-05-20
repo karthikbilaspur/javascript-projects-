@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navbar</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="nav-center">
-        <!-- nav header -->
-        <div class="nav-header">
-          <img src="./logo.svg" class="logo" alt="logo" />
-          <button class="nav-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <!-- links -->
-        <ul class="links">
-          <li>
-            <a href="index.html">home</a>
-          </li>
-          <li>
-            <a href="about.html">about</a>
-          </li>
-          <li>
-            <a href="projects.html">projects</a>
-          </li>
-          <li>
-            <a href="contact.html">contact</a>
-          </li>
-        </ul>
-        <!-- social media -->
-        <ul class="social-icons">
-          <li>
-            <a href="https://www.twitter.com">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.facebook.com">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com">
-              <i class="fab fa-linkedin"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.discord.com">
-              <i class="fab fa-discord"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.shopify.com">
-              <i class="fab fa-shopify"></i>
-            </a>
-          </li>
-        </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar Project</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-center">
+      <div class="nav-header">
+        <h3 class="logo">DevPortfolio</h3>
+        <button class="nav-toggle" id="nav-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
-    </nav>
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+      
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li class="dropdown">
+          <a href="#projects" class="nav-link dropdown-toggle">
+            Projects <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#color-flipper">Color Flipper</a></li>
+            <li><a href="#counter">Counter</a></li>
+            <li><a href="#navbar">Navbar</a></li>
+          </ul>
+        </li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="section">
+      <div class="section-center">
+        <h1>Home</h1>
+        <p>Scroll down to test sticky navbar and active link highlighting.</p>
+      </div>
+    </section>
+    
+    <section id="about" class="section">
+      <div class="section-center">
+        <h1>About</h1>
+        <p>This is the about section.</p>
+      </div>
+    </section>
+    
+    <section id="projects" class="section">
+      <div class="section-center">
+        <h1>Projects</h1>
+        <p>Check out the dropdown menu in the navbar.</p>
+      </div>
+    </section>
+    
+    <section id="color-flipper" class="section">
+      <div class="section-center">
+        <h1>Color Flipper</h1>
+        <p>Sub-project 1</p>
+      </div>
+    </section>
+    
+    <section id="counter" class="section">
+      <div class="section-center">
+        <h1>Counter</h1>
+        <p>Sub-project 2</p>
+      </div>
+    </section>
+    
+    <section id="contact" class="section">
+      <div class="section-center">
+        <h1>Contact</h1>
+        <p>Get in touch.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>

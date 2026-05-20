@@ -3,62 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random User</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Digital Clock Suite</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
-    <div class="block bcg-black"></div>
-    <div class="block">
-      <div class="container">
-        <img
-          src="person1.png"
-          alt="random user"
-          class="user-img"
-        />
-        <p class="user-title">My name is</p>
-        <p class="user-value">V.Karthik</p>
-        <div class="values-list">
-          <!-- single icon -->
-          <button class="icon" data-label="name">
-            <span class="far fa-user"></span>
-          </button>
-          <!-- end of single icon -->
-          <!-- single icon -->
-          <button class="icon" data-label="email">
-            <span class="far fa-envelope-open"></span>
-          </button>
-          <!-- end of single icon -->
-          <!-- single icon -->
-          <button class="icon" data-label="age">
-            <span class="far fa-calendar-times"></span>
-          </button>
-          <!-- end of single icon -->
-          <!-- single icon -->
-          <button class="icon" data-label="street">
-            <span class="far fa-map"></span>
-          </button>
-          <!-- end of single icon -->
-          <!-- single icon -->
-          <button class="icon" data-label="phone">
-            <span class="fas fa-phone"></span>
-          </button>
-          <!-- end of single icon -->
-          <!-- single icon -->
-          <button class="icon" data-label="password">
-            <span class="fas fa-user-lock"></span>
-          </button>
-          <!-- end of single icon -->
+    <div class="app">
+      <header>
+        <h1>⏰ Digital Clock Suite</h1>
+        <div class="mode-switcher">
+          <button class="mode-btn active" data-mode="clock">Clock</button>
+          <button class="mode-btn" data-mode="stopwatch">Stopwatch</button>
+          <button class="mode-btn" data-mode="timer">Timer</button>
         </div>
-        <button class="btn" type="button">random user</button>
+      </header>
+
+      <!-- Clock Mode -->
+      <div id="clock-mode" class="mode-container active">
+        <div class="time-display">
+          <div class="time" id="clock-time">00:00:00</div>
+          <div class="date" id="clock-date">Monday, Jan 1, 2026</div>
+        </div>
+        <div class="clock-controls">
+          <label class="toggle">
+            <input type="checkbox" id="format-24h" />
+            <span>24-hour format</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="show-seconds" checked />
+            <span>Show seconds</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Stopwatch Mode -->
+      <div id="stopwatch-mode" class="mode-container">
+        <div class="time-display">
+          <div class="time" id="stopwatch-time">00:00:00.00</div>
+        </div>
+        <div class="controls">
+          <button id="sw-start" class="btn primary">Start</button>
+          <button id="sw-lap" class="btn secondary" disabled>Lap</button>
+          <button id="sw-reset" class="btn secondary" disabled>Reset</button>
+        </div>
+        <div class="laps-container">
+          <h3>Laps</h3>
+          <div id="laps-list" class="laps-list"></div>
+        </div>
+      </div>
+
+      <!-- Timer Mode -->
+      <div id="timer-mode" class="mode-container">
+        <div class="time-display">
+          <div class="time" id="timer-time">00:00:00</div>
+          <div class="progress-bar">
+            <div id="timer-progress" class="progress-fill"></div>
+          </div>
+        </div>
+        
+        <div class="timer-setup" id="timer-setup">
+          <div class="time-inputs">
+            <div class="input-group">
+              <input type="number" id="hours" min="0" max="23" value="0" />
+              <label>Hours</label>
+            </div>
+            <div class="input-group">
+              <input type="number" id="minutes" min="0" max="59" value="5" />
+              <label>Minutes</label>
+            </div>
+            <div class="input-group">
+              <input type="number" id="seconds" min="0" max="59" value="0" />
+              <label>Seconds</label>
+            </div>
+          </div>
+          
+          <div class="presets">
+            <button class="preset-btn" data-time="60">1 min</button>
+            <button class="preset-btn" data-time="300">5 min</button>
+            <button class="preset-btn" data-time="600">10 min</button>
+            <button class="preset-btn" data-time="1500">25 min</button>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button id="tm-start" class="btn primary">Start</button>
+          <button id="tm-pause" class="btn secondary" disabled>Pause</button>
+          <button id="tm-reset" class="btn secondary" disabled>Reset</button>
+        </div>
       </div>
     </div>
-    <script type="module" src="./app.js"></script>
+
+    <div id="toast" class="toast"></div>
+    <audio id="alarm-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3"></audio>
+    <script src="script.js"></script>
   </body>
 </html>

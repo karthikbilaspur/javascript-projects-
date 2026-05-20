@@ -1,52 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ES6 Slider</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixology Hub | Discover Cocktail Recipes</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Mixology<span>Hub</span></h1>
+      <nav>
+        <button id="randomBtn" class="btn-secondary">Surprise Me</button>
+        <button id="favoritesBtn" class="btn-icon">♥ <span id="favCount">0</span></button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <section class="slider">
-      <div class="reviews">
-        <h2><span>/</span>reviews</h2>
+  <main>
+     <section class="cotd-banner" id="cotdBanner">
+    <div class="container">
+      <div class="cotd-content">
+        <div class="cotd-text">
+          <span class="cotd-badge">🍸 Cocktail of the Day</span>
+          <h3 id="cotdName">Loading...</h3>
+          <p id="cotdDesc">Discover today's featured recipe</p>
+        </div>
+        <div class="cotd-actions">
+          <button id="cotdViewBtn" class="btn-primary">View Recipe</button>
+          <button id="cotdShareBtn" class="btn-icon">Share ↗</button>
+        </div>
       </div>
-      <div class="slide-container">
-        <!-- <article class="slide">
-          <img
-            src="https://res.cloudinary.com/diqqf3eq2/image/upload/c_scale,w_200/v1595959121/person-1_aufeoq.jpg"
-            class="img"
-            alt="peter doe"
-          />
-          <h4>peter doe</h4>
-          <p class="title">product designer</p>
-          <p class="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quo
-            eius recusandae officia voluptas sint deserunt dicta nihil nam
-            omnis?
-          </p>
-          <div class="quote-icon">
-            <i class="fas fa-quote-right"></i>
-          </div>
-        </article> -->
+    </div>
+  </section>
+    <section class="hero">
+      <div class="container">
+        <h2>Craft Your Perfect Drink</h2>
+        <p>Search 600+ cocktail recipes from around the world</p>
+        <div class="search-wrap">
+          <input type="text" id="searchInput" placeholder="Search cocktails... e.g. Margarita">
+          <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Cocktail">Cocktail</option>
+            <option value="Ordinary Drink">Ordinary Drink</option>
+            <option value="Shot">Shot</option>
+            <option value="Coffee / Tea">Coffee / Tea</option>
+          </select>
+          <select id="alcoholFilter">
+            <option value="">All Types</option>
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Non alcoholic">Non-Alcoholic</option>
+          </select>
+        </div>
       </div>
-      <!-- buttons -->
-      <!-- prev btn -->
-      <button class="btn prev-btn">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <!-- next button -->
-      <button class="btn next-btn">
-        <i class="fas fa-chevron-right"></i>
-      </button>
     </section>
-    <script type="module" src="app.js"></script>
-  </body>
+
+    <section class="results container">
+      <div id="loader" class="loader hidden"></div>
+      <div id="cocktailGrid" class="grid"></div>
+      <div id="emptyState" class="empty hidden">
+        <h3>No cocktails found</h3>
+        <p>Try a different search or filter</p>
+      </div>
+    </section>
+
+    <!-- NEW: Testimonial Slider Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">What Mixologists Say</h2>
+        <div class="slider-container">
+          <div class="slider-track" id="sliderTrack">
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">“Mixology Hub made hosting my dinner party so easy. Found the perfect Negroni recipe in seconds and my guests were impressed.”</p>
+              <div class="author">
+                <img src="https://i.pravatar.cc/80?img=1" alt="Sarah Chen">
+                <div>
+                  <h4>Sarah Chen</h4>
+                  <span>Home Bartender</span>
+                </div>
+              </div>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">“As a professional bartender, I use this daily for inspiration. The ingredient breakdowns are spot-on and save me tons of time.”</p>
+              <div class="author">
+                <img src="https://i.pravatar.cc/80?img=12" alt="Marcus Rivera">
+                <div>
+                  <h4>Marcus Rivera</h4>
+                  <span>Head Bartender @ The Velvet Room</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">“Love the non-alcoholic filters! Finally a cocktail site that doesn’t forget about mocktail lovers. My kids make virgin piña coladas now.”</p>
+              <div class="author">
+                <img src="https://i.pravatar.cc/80?img=5" alt="Priya Patel">
+                <div>
+                  <h4>Priya Patel</h4>
+                  <span>Food Blogger</span>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p class="quote">“The favorites feature is genius. I’ve built my entire signature menu using recipes I saved here. Clean UI, no ads, just recipes.”</p>
+              <div class="author">
+                <img src="https://i.pravatar.cc/80?img=33" alt="James O'Connor">
+                <div>
+                  <h4>James O'Connor</h4>
+                  <span>Bar Owner</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn" id="prevBtn">‹</button>
+            <div class="slider-dots" id="sliderDots"></div>
+            <button class="slider-btn" id="nextBtn">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with TheCocktailDB API | © 2026 Mixology Hub</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

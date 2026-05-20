@@ -1,30 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagination Complete</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtVault | Random Art Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Art<span>Vault</span></h1>
+      <nav>
+        <button id="shuffleBtn" class="btn-primary">Shuffle Gallery</button>
+        <button id="savedBtn" class="btn-icon">★ <span id="savedCount">0</span></button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- stylesheet -->
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <main>
-      <div class="section-title">
-        <h1>Loading...</h1>
-        <div class="underline"></div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Discover Random Masterpieces</h2>
+        <p>Explore public domain art from around the world — paginated for easy browsing</p>
+        <div class="filters">
+          <select id="eraFilter">
+            <option value="">All Eras</option>
+            <option value="Renaissance">Renaissance</option>
+            <option value="Baroque">Baroque</option>
+            <option value="Impressionism">Impressionism</option>
+            <option value="Modern">Modern</option>
+            <option value="Contemporary">Contemporary</option>
+          </select>
+          <select id="typeFilter">
+            <option value="">All Types</option>
+            <option value="Painting">Painting</option>
+            <option value="Sculpture">Sculpture</option>
+            <option value="Photography">Photography</option>
+            <option value="Digital">Digital Art</option>
+          </select>
+          <input type="text" id="searchInput" placeholder="Search artist or title...">
+        </div>
       </div>
-      <section class="followers">
-        <div class="container"></div>
+    </section>
 
-        <div class="btn-container"></div>
-      </section>
-    </main>
-    <script type="module" src="./app.js"></script>
-  </body>
+    <section class="results container">
+      <div class="results-header">
+        <span id="resultCount">Showing 0 artworks</span>
+        <select id="perPageSelect">
+          <option value="6">6 per page</option>
+          <option value="12" selected>12 per page</option>
+          <option value="24">24 per page</option>
+        </select>
+      </div>
+      
+      <div id="loader" class="loader hidden"></div>
+      <div id="artGrid" class="grid"></div>
+      
+      <!-- Pagination Controls -->
+      <div class="pagination" id="pagination">
+        <button id="prevPage" class="page-btn">← Prev</button>
+        <div class="page-numbers" id="pageNumbers"></div>
+        <button id="nextPage" class="page-btn">Next →</button>
+      </div>
+
+      <div id="emptyState" class="empty hidden">
+        <h3>No artworks found</h3>
+        <p>Try different filters or hit Shuffle Gallery</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Public domain artworks | © 2026 ArtVault</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

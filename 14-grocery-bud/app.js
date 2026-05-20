@@ -1,5 +1,4 @@
 // ****** select items **********
-
 const form = document.querySelector(".grocery-form");
 const alert = document.querySelector(".alert");
 const grocery = document.getElementById("grocery");
@@ -7,84 +6,87 @@ const submitBtn = document.querySelector(".submit-btn");
 const container = document.querySelector(".grocery-container");
 const list = document.querySelector(".grocery-list");
 const clearBtn = document.querySelector(".clear-btn");
+const loremBtn = document.querySelector(".lorem-btn");
+
 // edit option
 let editElement;
 let editFlag = false;
 let editID = "";
-// ****** event listeners **********
 
-// submit form
+// ****** Lorem data banks **********
+const loremNames = [
+  "Lorem Chair", "Ipsum Table", "Dolor Sofa", "Sit Lamp", "Amet Desk", 
+  "Consectetur Shelf", "Adipiscing Mug", "Elit Vase", "Eiusmod Clock", "Tempor Rug"
+];
+const loremSentences = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "Pellentesque habitant morbi tristique senectus et netus.",
+  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+  "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+  "Excepteur sint occaecat cupidatat non proident, sunt in culpa."
+];
+
+// ****** event listeners **********
 form.addEventListener("submit", addItem);
-// clear list
 clearBtn.addEventListener("click", clearItems);
-// display items onload
+loremBtn.addEventListener("click", generateLoremItem);
 window.addEventListener("DOMContentLoaded", setupItems);
 
 // ****** functions **********
-
-// add item
 function addItem(e) {
   e.preventDefault();
-  const value = grocery.value;
+  const value = grocery.value.trim();
   const id = new Date().getTime().toString();
 
   if (value !== "" && !editFlag) {
-    const element = document.createElement("article");
-    let attr = document.createAttribute("data-id");
-    attr.value = id;
-    element.setAttributeNode(attr);
-    element.classList.add("grocery-item");
-    element.innerHTML = `<p class="title">${value}</p>
-            <div class="btn-container">
-              <!-- edit btn -->
-              <button type="button" class="edit-btn">
-                <i class="fas fa-edit"></i>
-              </button>
-              <!-- delete btn -->
-              <button type="button" class="delete-btn">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          `;
-    // add event listeners to both buttons;
-    const deleteBtn = element.querySelector(".delete-btn");
-    deleteBtn.addEventListener("click", deleteItem);
-    const editBtn = element.querySelector(".edit-btn");
-    editBtn.addEventListener("click", editItem);
-
-    // append child
-    list.appendChild(element);
-    // display alert
+    const itemData = createItemData(id, value);
+    createListItem(itemData);
     displayAlert("item added to the list", "success");
-    // show container
     container.classList.add("show-container");
-    // set local storage
-    addToLocalStorage(id, value);
-    // set back to default
+    addToLocalStorage(itemData);
     setBackToDefault();
   } else if (value !== "" && editFlag) {
-    editElement.innerHTML = value;
+    editElement.querySelector('.title').textContent = value;
     displayAlert("value changed", "success");
-
-    // edit  local storage
     editLocalStorage(editID, value);
     setBackToDefault();
   } else {
     displayAlert("please enter value", "danger");
   }
 }
-// display alert
+
+// Generate full lorem product
+function generateLoremItem() {
+  const id = new Date().getTime().toString();
+  const name = loremNames[Math.floor(Math.random() * loremNames.length)];
+  const itemData = createItemData(id, name);
+  createListItem(itemData);
+  displayAlert("lorem item generated", "success");
+  container.classList.add("show-container");
+  addToLocalStorage(itemData);
+}
+
+// Create full item data object
+function createItemData(id, name) {
+  return {
+    id,
+    name,
+    desc: loremSentences[Math.floor(Math.random() * loremSentences.length)],
+    price: (Math.random() * 90 + 10).toFixed(2),
+    img: `https://picsum.photos/seed/${id}/100/100`
+  };
+}
+
 function displayAlert(text, action) {
   alert.textContent = text;
   alert.classList.add(`alert-${action}`);
-  // remove alert
   setTimeout(function () {
     alert.textContent = "";
     alert.classList.remove(`alert-${action}`);
   }, 1000);
 }
 
-// clear items
 function clearItems() {
   const items = document.querySelectorAll(".grocery-item");
   if (items.length > 0) {
@@ -98,121 +100,98 @@ function clearItems() {
   localStorage.removeItem("list");
 }
 
-// delete item
-
 function deleteItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
+  const element = e.currentTarget.closest(".grocery-item");
   const id = element.dataset.id;
-
   list.removeChild(element);
-
   if (list.children.length === 0) {
     container.classList.remove("show-container");
   }
   displayAlert("item removed", "danger");
-
   setBackToDefault();
-  // remove from local storage
   removeFromLocalStorage(id);
 }
-// edit item
+
 function editItem(e) {
-  const element = e.currentTarget.parentElement.parentElement;
-  // set edit item
-  editElement = e.currentTarget.parentElement.previousElementSibling;
-  // set form value
-  grocery.value = editElement.innerHTML;
+  const element = e.currentTarget.closest(".grocery-item");
+  editElement = element;
+  grocery.value = element.querySelector('.title').textContent;
   editFlag = true;
   editID = element.dataset.id;
-  //
   submitBtn.textContent = "edit";
 }
-// set backt to defaults
+
 function setBackToDefault() {
   grocery.value = "";
   editFlag = false;
   editID = "";
-  submitBtn.textContent = "submit";
+  submitBtn.textContent = "add item";
 }
 
 // ****** local storage **********
-
-// add to local storage
-function addToLocalStorage(id, value) {
-  const grocery = { id, value };
+function addToLocalStorage(itemData) {
   let items = getLocalStorage();
-  items.push(grocery);
+  items.push(itemData);
   localStorage.setItem("list", JSON.stringify(items));
 }
 
 function getLocalStorage() {
   return localStorage.getItem("list")
-    ? JSON.parse(localStorage.getItem("list"))
+   ? JSON.parse(localStorage.getItem("list"))
     : [];
 }
 
 function removeFromLocalStorage(id) {
   let items = getLocalStorage();
-
-  items = items.filter(function (item) {
-    if (item.id !== id) {
-      return item;
-    }
-  });
-
+  items = items.filter(item => item.id!== id);
   localStorage.setItem("list", JSON.stringify(items));
 }
+
 function editLocalStorage(id, value) {
   let items = getLocalStorage();
-
-  items = items.map(function (item) {
+  items = items.map(item => {
     if (item.id === id) {
-      item.value = value;
+      item.name = value; // only editing name for simplicity
     }
     return item;
   });
   localStorage.setItem("list", JSON.stringify(items));
 }
 
-// SETUP LOCALSTORAGE.REMOVEITEM('LIST');
-
 // ****** setup items **********
-
 function setupItems() {
   let items = getLocalStorage();
-
   if (items.length > 0) {
-    items.forEach(function (item) {
-      createListItem(item.id, item.value);
-    });
+    items.forEach(item => createListItem(item));
     container.classList.add("show-container");
   }
 }
 
-function createListItem(id, value) {
+function createListItem(item) {
   const element = document.createElement("article");
-  let attr = document.createAttribute("data-id");
-  attr.value = id;
-  element.setAttributeNode(attr);
+  element.setAttribute("data-id", item.id);
   element.classList.add("grocery-item");
-  element.innerHTML = `<p class="title">${value}</p>
-            <div class="btn-container">
-              <!-- edit btn -->
-              <button type="button" class="edit-btn">
-                <i class="fas fa-edit"></i>
-              </button>
-              <!-- delete btn -->
-              <button type="button" class="delete-btn">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          `;
-  // add event listeners to both buttons;
+  element.innerHTML = `
+    <img src="${item.img}" alt="${item.name}" class="item-img" />
+    <div class="item-info">
+      <div class="item-header">
+        <p class="title">${item.name}</p>
+        <p class="price">$${item.price}</p>
+      </div>
+      <p class="desc">${item.desc}</p>
+      <div class="btn-container">
+        <button type="button" class="edit-btn">
+          <i class="fas fa-edit"></i> edit
+        </button>
+        <button type="button" class="delete-btn">
+          <i class="fas fa-trash"></i> delete
+        </button>
+      </div>
+    </div>
+  `;
   const deleteBtn = element.querySelector(".delete-btn");
   deleteBtn.addEventListener("click", deleteItem);
   const editBtn = element.querySelector(".edit-btn");
   editBtn.addEventListener("click", editItem);
-
-  // append child
   list.appendChild(element);
 }

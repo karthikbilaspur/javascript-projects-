@@ -1,84 +1,85 @@
-<!DOCTYPE html> 
-<html lang="en"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Video Player</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Custom HTML5 Video Player</h1>
+    
+    <div class="video-player" id="videoPlayer">
+      <video class="video" id="video" poster="https://picsum.photos/1280/720?grayscale">
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+        <p>Your browser doesn't support HTML5 video. <a href="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">Download video</a></p>
+      </video>
 
-<head> 
-	<meta charset="UTF-8"> 
-	<meta name="viewport"
-		content="width=device-width, 
-				initial-scale=1.0"> 
-	<title>Video Player-GFG</title> 
-	<link rel="stylesheet"
-		href= 
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
-	<link rel="stylesheet"
-		href="style.css"> 
+      <div class="video-controls" id="videoControls">
+        <div class="progress-bar">
+          <div class="progress-filled" id="progressFilled"></div>
+          <input type="range" class="progress-slider" id="progressSlider" min="0" max="100" step="0.1" value="0" aria-label="Video progress">
+        </div>
 
-</head> 
+        <div class="controls-main">
+          <div class="controls-left">
+            <button class="control-btn" id="playBtn" aria-label="Play">
+              <i class="fa-solid fa-play"></i>
+            </button>
+            
+            <div class="volume-control">
+              <button class="control-btn" id="volumeBtn" aria-label="Mute">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+            </div>
 
-<body> 
-	<div class="gfg"> 
-		<p>GeeksForGeeks</p> 
-		<p>Custom Video Player</p> 
-	</div> 
-	
-	<!-- Video container -->
-	<div class="video-container"> 
-		<img src= 
-"https://media.geeksforgeeks.org/wp-content/uploads/20231020170918/Thumbnail-(1).jpg"
-			id="video-thumbnail"> 
-		<video id="video"> 
-			
-		<!-- Video source -->
-			<source
-				src= 
-"https://media.geeksforgeeks.org/wp-content/uploads/20231020155223/Full-Stack-Development-_-LIVE-Classes-_-GeeksforGeeks.mp4"
-				type="video/mp4"> 
-		</video> 
-		
-		<!-- Controlers continer -->
-		<div class="controls"> 
-			
-		<!-- Left controller div -->
-			<div class="left"> 
-				<button id="skipminus-10"> 
-					<i class="fa-solid fa-backward"></i> 
-				</button> 
-				<button id="play-pause"> 
-					<i class="fa-solid fa-play"></i> 
-				</button> 
-				<button id="skip-10"> 
-					<i class="fa-solid fa-forward"></i> 
-				</button> 
-			</div> 
-			
-	<!-- div for progress bar -->
-			<div class="video-timer"> 
-				<span id="current-time">00:00</span> 
-				<span id="separator">/</span> 
-				<span id="max-duration">00:00</span> 
-			</div> 
-			<div class="playback-line"> 
-				<div class="progress-bar"></div> 
+            <div class="time-display">
+              <span id="currentTime">0:00</span>
+              <span>/</span>
+              <span id="duration">0:00</span>
+            </div>
+          </div>
 
-			</div> 
-			
-			<!-- Right controller div -->
-			<div class="right"> 
-				<div class="volume-container"> 
-					<div id="mute"> 
-						<i class="fas fa-volume-up"></i> 
-					</div> 
-					<input type="range"
-						id="volume"
-						min="0"
-						max="1"
-						step="0.01"
-						value="1"> 
-				</div> 
-			</div> 
-		</div> 
-	</div> 
-	<script src="script.js"></script> 
-</body> 
+          <div class="controls-right">
+            <div class="speed-control">
+              <button class="control-btn" id="speedBtn" aria-label="Playback speed">1x</button>
+              <div class="speed-menu" id="speedMenu">
+                <button data-speed="0.5">0.5x</button>
+                <button data-speed="0.75">0.75x</button>
+                <button data-speed="1" class="active">1x</button>
+                <button data-speed="1.25">1.25x</button>
+                <button data-speed="1.5">1.5x</button>
+                <button data-speed="2">2x</button>
+              </div>
+            </div>
 
+            <button class="control-btn" id="pipBtn" aria-label="Picture in picture">
+              <i class="fa-solid fa-clone"></i>
+            </button>
+
+            <button class="control-btn" id="fullscreenBtn" aria-label="Fullscreen">
+              <i class="fa-solid fa-expand"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="keyboard-shortcuts">
+      <h3>Keyboard Shortcuts</h3>
+      <ul>
+        <li><kbd>Space</kbd> / <kbd>K</kbd> - Play/Pause</li>
+        <li><kbd>M</kbd> - Mute/Unmute</li>
+        <li><kbd>F</kbd> - Fullscreen</li>
+        <li><kbd>←</kbd> / <kbd>→</kbd> - Seek 5s</li>
+        <li><kbd>↑</kbd> / <kbd>↓</kbd> - Volume</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

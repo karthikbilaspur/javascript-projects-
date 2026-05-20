@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML/CSS/JS FAQ Accordion</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Using Font Awesome for chevron icons - optional -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>HTML, CSS & JavaScript FAQ</h1>
+    <p class="subtitle">Common questions answered about the core web technologies</p>
+    
+    <div class="accordion" id="faqAccordion">
+      <!-- Item 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>What is the difference between HTML, CSS, and JavaScript?</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>
+            <strong>HTML</strong> is the structure - it defines elements like headings, paragraphs, and images using tags. 
+            <strong>CSS</strong> is the style - it controls colors, layout, fonts, and spacing. 
+            <strong>JavaScript</strong> is the behavior - it makes pages interactive, handles events, and updates content dynamically.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>What is the CSS Box Model?</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>
+            Every HTML element is a box made of 4 layers: <code>content</code>, <code>padding</code>, <code>border</code>, and <code>margin</code>. 
+            By default, <code>width</code> and <code>height</code> only set the content size. Use <code>box-sizing: border-box;</code> 
+            to make width/height include padding and border, which makes layouts much easier.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>What's the difference between let, const, and var in JS?</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>
+            <strong>var</strong>: Function-scoped, hoisted, and can be redeclared. Avoid in modern JS.<br>
+            <strong>let</strong>: Block-scoped, can be reassigned but not redeclared in the same scope.<br>
+            <strong>const</strong>: Block-scoped, cannot be reassigned. Use by default, switch to <code>let</code> only if you need to reassign.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>How do I center a div in CSS?</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>Depends on what you're centering:</p>
+          <ul>
+            <li><strong>Horizontally</strong>: <code>margin: 0 auto;</code> for block elements with a set width</li>
+            <li><strong>Both directions</strong>: Use Flexbox - <code>display: flex; justify-content: center; align-items: center;</code></li>
+            <li><strong>Both directions</strong>: Use Grid - <code>display: grid; place-items: center;</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>What is event delegation in JavaScript?</span>
+          <i class="fa-solid fa-chevron-down icon"></i>
+        </button>
+        <div class="accordion-content">
+          <p>
+            Instead of adding listeners to every child element, you add one listener to a parent. 
+            When an event bubbles up, you check <code>event.target</code> to see which child fired it. 
+            This is faster and works for elements added to the DOM later.
+          </p>
+          <pre><code>document.querySelector('ul').addEventListener('click', e => {
+  if(e.target.tagName === 'LI') {
+    console.log('Clicked:', e.target.textContent);
+  }
+});</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

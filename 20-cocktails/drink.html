@@ -1,30 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Single Cocktail</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <section class="loading">
-      <img src="./loading.gif" alt="loading" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mixology Hub | Discover Cocktail Recipes</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Mixology<span>Hub</span></h1>
+      <nav>
+        <button id="randomBtn" class="btn-secondary">Surprise Me</button>
+        <button id="favoritesBtn" class="btn-icon">♥ <span id="favCount">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Craft Your Perfect Drink</h2>
+        <p>Search 600+ cocktail recipes from around the world</p>
+        <div class="search-wrap">
+          <input type="text" id="searchInput" placeholder="Search cocktails... e.g. Margarita">
+          <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Cocktail">Cocktail</option>
+            <option value="Ordinary Drink">Ordinary Drink</option>
+            <option value="Shot">Shot</option>
+            <option value="Coffee / Tea">Coffee / Tea</option>
+          </select>
+          <select id="alcoholFilter">
+            <option value="">All Types</option>
+            <option value="Alcoholic">Alcoholic</option>
+            <option value="Non alcoholic">Non-Alcoholic</option>
+          </select>
+        </div>
+      </div>
     </section>
-    <section class="single-drink">
-      <img src="./cocktail.jpg" class="drink-img" alt="" />
-      <article class="drink-info">
-        <h2 class="drink-name"></h2>
-        <p class="drink-desc"></p>
-        <ul class="drink-ingredients"></ul>
-        <a href="index.html" class="btn">all cocktails</a>
-      </article>
+
+    <section class="results container">
+      <div id="loader" class="loader hidden"></div>
+      <div id="cocktailGrid" class="grid"></div>
+      <div id="emptyState" class="empty hidden">
+        <h3>No cocktails found</h3>
+        <p>Try a different search or filter</p>
+      </div>
     </section>
-    <script type="module" src="./singleDrink.js"></script>
-  </body>
+  </main>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with TheCocktailDB API | © 2026 Mixology Hub</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

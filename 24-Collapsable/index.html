@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Collapsible - HTML/CSS/JS</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <h1>Web Fundamentals Collapsible</h1>
+      <p class="subtitle">Expand sections to learn HTML, CSS, and JavaScript concepts</p>
+    </header>
+
+    <!-- Search gets injected here by JS -->
+
+    <section class="collapsible-group" id="collapsibleGroup" data-allow-multiple="true">
+      <!-- Section 1: HTML -->
+      <article class="collapsible" data-category="html">
+        <button class="collapsible-trigger" aria-expanded="false" aria-controls="panel-html">
+          <div class="trigger-content">
+            <span class="trigger-icon"><i class="fa-brands fa-html5"></i></span>
+            <span class="trigger-title">HTML: Structure & Semantics</span>
+          </div>
+          <span class="trigger-indicator" aria-hidden="true">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+        <div class="collapsible-panel" id="panel-html" role="region">
+          <div class="collapsible-content">
+            <h3>What is Semantic HTML?</h3>
+            <p>Semantic tags like <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;nav&gt;</code> describe their meaning to browsers and assistive tech.</p>
+            <ul>
+              <li><strong>SEO:</strong> Search engines understand content hierarchy better</li>
+              <li><strong>Accessibility:</strong> Screen readers can navigate by landmarks</li>
+              <li><strong>Maintainability:</strong> Code is self-documenting</li>
+            </ul>
+            <pre><code>&lt;article&gt;
+  &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+  &lt;p&gt;Content goes here...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 2: CSS -->
+      <article class="collapsible" data-category="css">
+        <button class="collapsible-trigger" aria-expanded="false" aria-controls="panel-css">
+          <div class="trigger-content">
+            <span class="trigger-icon"><i class="fa-brands fa-css3-alt"></i></span>
+            <span class="trigger-title">CSS: Layout & Specificity</span>
+          </div>
+          <span class="trigger-indicator" aria-hidden="true">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+        <div class="collapsible-panel" id="panel-css" role="region">
+          <div class="collapsible-content">
+            <h3>Flexbox vs Grid</h3>
+            <p><strong>Flexbox</strong>: 1-dimensional. Great for nav bars, centering, distributing space in a row/column.</p>
+            <p><strong>Grid</strong>: 2-dimensional. Perfect for full page layouts, card grids, complex alignment.</p>
+            <h3>CSS Specificity</h3>
+            <p>Calculated as: inline > ID > class/attribute > element. Avoid <code>!important</code> unless necessary.</p>
+            <code>#nav.button.active { }</code> beats <code>.button { }</code>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 3: JS -->
+      <article class="collapsible" data-category="javascript">
+        <button class="collapsible-trigger" aria-expanded="false" aria-controls="panel-js">
+          <div class="trigger-content">
+            <span class="trigger-icon"><i class="fa-brands fa-js"></i></span>
+            <span class="trigger-title">JavaScript: Events & Async</span>
+          </div>
+          <span class="trigger-indicator" aria-hidden="true">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+        <div class="collapsible-panel" id="panel-js" role="region">
+          <div class="collapsible-content">
+            <h3>Event Loop Basics</h3>
+            <p>JS is single-threaded. The event loop handles async tasks: Call Stack → Web APIs → Callback Queue → Event Loop pushes to Stack when empty.</p>
+            <h3>Promises vs Async/Await</h3>
+            <pre><code>// Promises
+fetch('/api').then(res => res.json()).then(data => console.log(data));
+
+// Async/Await - cleaner
+async function getData() {
+  const res = await fetch('/api');
+  const data = await res.json();
+  console.log(data);
+}</code></pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 4: DevTools -->
+      <article class="collapsible" data-category="tools">
+        <button class="collapsible-trigger" aria-expanded="false" aria-controls="panel-tools">
+          <div class="trigger-content">
+            <span class="trigger-icon"><i class="fa-solid fa-wrench"></i></span>
+            <span class="trigger-title">Browser DevTools Tips</span>
+          </div>
+          <span class="trigger-indicator" aria-hidden="true">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+        <div class="collapsible-panel" id="panel-tools" role="region">
+          <div class="collapsible-content">
+            <p>Press <code>F12</code> or <code>Ctrl+Shift+I</code> to open DevTools.</p>
+            <ul>
+              <li><strong>Elements:</strong> Inspect and live-edit HTML/CSS</li>
+              <li><strong>Console:</strong> Run JS, view errors, <code>console.log()</code></li>
+              <li><strong>Network:</strong> See all requests, check load times</li>
+              <li><strong>Performance:</strong> Record and analyze runtime</li>
+            </ul>
+            <p>Pro tip: Use <code>$0</code> in Console to reference the currently selected element.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="controls">
+      <button class="btn-control" id="expandAll">Expand All</button>
+      <button class="btn-control" id="collapseAll">Collapse All</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

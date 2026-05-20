@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placeholder Card Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Placeholder Card Generator</h1>
+      <p>Generate fake profile cards for wireframes & mockups</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <label>Avatar Shape</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-shape="round">Round</button>
+          <button class="toggle-btn" data-shape="square">Square</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Generate Mode</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-mode="single">Single</button>
+          <button class="toggle-btn" data-mode="grid">3x3 Grid</button>
+        </div>
+      </div>
+
+      <button id="generate-btn" class="btn primary">Generate New</button>
+    </div>
+
+    <!-- Cards appear here -->
+    <div id="cards-container" class="cards-container"></div>
+
+    <!-- Gallery -->
+    <div class="gallery-section">
+      <div class="gallery-header">
+        <h2>Saved Gallery</h2>
+        <button id="clear-gallery" class="btn danger small">Clear All</button>
+      </div>
+      <div id="gallery" class="gallery"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

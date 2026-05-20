@@ -3,23 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="icons/gabriel.ico" />
-    <title>Dad Jokes</title>
+    <title>Dad Joke Generator</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h3>Don't Laugh Challenge</h3>
-      <div id="joke" class="joke">// Joke goes here</div>
-      <button id="jokeBtn" class="btn">Get Another Joke</button>
-    </div>
+    <main>
+      <div class="app">
+        <header>
+          <h1>😂 Dad Joke Generator</h1>
+          <p class="subtitle">Warning: May cause eye-rolling</p>
+        </header>
 
-    <script src="scrtipt.js"></script>
+        <div class="joke-card">
+          <div class="joke-display">
+            <p id="joke-text">Click "Get Joke" to start the dad energy...</p>
+          </div>
+
+          <div class="controls">
+            <button id="get-joke" class="btn primary">Get Joke</button>
+            <button id="save-joke" class="btn secondary" disabled>⭐ Save</button>
+            <button id="copy-joke" class="btn secondary" disabled>📋 Copy</button>
+            <button id="share-joke" class="btn secondary" disabled>🔗 Share</button>
+          </div>
+
+          <div class="filters">
+            <label>
+              <input type="checkbox" id="safe-mode" checked>
+              Safe Mode Only
+            </label>
+            <select id="joke-type">
+              <option value="any">Any Type</option>
+              <option value="general">General</option>
+              <option value="knock-knock">Knock-Knock</option>
+              <option value="programming">Programming</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="favorites">
+          <div class="favorites-header">
+            <h2>Saved Jokes <span id="favorites-count">(0)</span></h2>
+            <button id="clear-favorites" class="btn danger">Clear All</button>
+          </div>
+          <div id="favorites-list"></div>
+        </div>
+      </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
   </body>
 </html>

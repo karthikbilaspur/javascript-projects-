@@ -1,68 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown</title>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Countdown Timer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Pro Countdown</h1>
+      <div class="header-controls">
+        <button id="theme-toggle" class="icon-btn" title="Toggle theme">🌙</button>
+        <button id="add-tab-btn" class="icon-btn" title="New countdown">+</button>
+      </div>
+    </header>
 
-    <!-- styles -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <section class="section-center">
-      <!-- image -->
-      <article class="gift-img">
-        <img src="./gift.jpeg" alt="gift" />
-      </article>
-      <!-- info -->
-      <article class="gift-info">
-        <h3>old iphone giveaway</h3>
-        <h4 class="giveaway">
-          giveaway ends on Sunday, 24 April 2020, 8:00am
-        </h4>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Reprehenderit molestiae cum libero atque ut voluptate qui consectetur
-          aliquid incidunt voluptatem quos, dolore, non commodi quaerat aliquam
-          eligendi, quisquam totam blanditiis.
-        </p>
-        <div class="deadline">
-          <!-- days -->
-          <div class="deadline-format">
-            <div>
-              <h4 class="days">34</h4>
-              <span>days</span>
-            </div>
-          </div>
-          <!-- end of days -->
-          <!-- days -->
-          <div class="deadline-format">
-            <div>
-              <h4 class="hours">34</h4>
-              <span>hours</span>
-            </div>
-          </div>
-          <!-- end of days -->
-          <!-- minutes -->
-          <div class="deadline-format">
-            <div>
-              <h4 class="minutes">34</h4>
-              <span>mins</span>
-            </div>
-          </div>
-          <!-- end of days -->
-          <!-- minutes -->
-          <div class="deadline-format">
-            <div>
-              <h4 class="seconds">34</h4>
-              <span>secs</span>
-            </div>
-          </div>
-          <!-- end of days -->
+    <!-- Tab bar for multiple countdowns -->
+    <div class="tab-bar" id="tab-bar"></div>
+
+    <!-- Timer containers will be injected here -->
+    <div id="timers-wrapper"></div>
+  </div>
+
+  <!-- Template for each countdown -->
+  <template id="timer-template">
+    <div class="timer-container" data-id="">
+      <div class="timer-header-row">
+        <input type="text" class="timer-title" placeholder="Untitled Event" value="Product Launch">
+        <button class="delete-tab-btn" title="Delete countdown">×</button>
+      </div>
+
+      <div class="countdown-display">
+        <div class="time-block">
+          <span class="time-value days">00</span>
+          <span class="time-label">Days</span>
         </div>
-      </article>
-    </section>
-    <!-- javascript -->
-    <script src="app.js"></script>
-  </body>
+        <div class="separator">:</div>
+        <div class="time-block">
+          <span class="time-value hours">00</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="separator">:</div>
+        <div class="time-block">
+          <span class="time-value minutes">00</span>
+          <span class="time-label">Minutes</span>
+        </div>
+        <div class="separator">:</div>
+        <div class="time-block">
+          <span class="time-value seconds">00</span>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+
+      <div class="status-message">Set a target date to begin</div>
+
+      <div class="controls">
+        <div class="input-group">
+          <label>Target Date & Time</label>
+          <input type="datetime-local" class="date-input">
+        </div>
+        
+        <div class="button-group">
+          <button class="btn primary start-btn">Start</button>
+          <button class="btn pause-btn" disabled>Pause</button>
+          <button class="btn danger reset-btn">Reset</button>
+        </div>
+
+        <div class="extra-actions">
+          <button class="btn secondary share-btn">🔗 Share Link</button>
+          <button class="btn secondary gcal-btn">📅 Add to Google Calendar</button>
+          <button class="btn secondary notify-btn">🔔 Enable Notifications</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
 </html>
